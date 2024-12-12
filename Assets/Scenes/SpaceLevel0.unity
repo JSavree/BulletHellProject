@@ -3523,6 +3523,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 41119713}
     m_Modifications:
     - target: {fileID: 151869266748268070, guid: b21972d4666bbfc419c2de1622a3e5b6, type: 3}
+      propertyPath: CoolOffTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 151869266748268070, guid: b21972d4666bbfc419c2de1622a3e5b6, type: 3}
       propertyPath: _healthController
       value: 
       objectReference: {fileID: 2140609039}
@@ -3530,6 +3534,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 4267998219537270029, guid: b21972d4666bbfc419c2de1622a3e5b6, type: 3}
+      propertyPath: _UIManager
+      value: 
+      objectReference: {fileID: 809082327}
     - target: {fileID: 4267998219537270031, guid: b21972d4666bbfc419c2de1622a3e5b6, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3586,6 +3594,10 @@ PrefabInstance:
       propertyPath: _healthController
       value: 
       objectReference: {fileID: 2140609039}
+    - target: {fileID: 8483096567226534799, guid: b21972d4666bbfc419c2de1622a3e5b6, type: 3}
+      propertyPath: CoolOffTime
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8483096567226534799, guid: b21972d4666bbfc419c2de1622a3e5b6, type: 3}
       propertyPath: _healthController
       value: 

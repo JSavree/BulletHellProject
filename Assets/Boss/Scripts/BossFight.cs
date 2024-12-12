@@ -48,7 +48,7 @@ public class BossFight : MonoBehaviour
 
         if (other.tag == "ChargeProjectile")
         {
-            DamageBoss(100);
+            DamageBoss(10);
         }
 
     }

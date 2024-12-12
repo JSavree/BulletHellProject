@@ -13,6 +13,7 @@ public class BossFight : MonoBehaviour
     public float secsToWait;
     public HealthBar healthBar;
     [SerializeField] private GameObject[] bulletHellPatterns;
+    [SerializeField] private UIManagement _UIManager;
     
     private int currPattern;
     private int currPattern2;
@@ -47,7 +48,7 @@ public class BossFight : MonoBehaviour
 
         if (other.tag == "ChargeProjectile")
         {
-            DamageBoss(10);
+            DamageBoss(100);
         }
 
     }
@@ -145,7 +146,9 @@ public class BossFight : MonoBehaviour
         if (currentHealth < 1)
         {
             DeactivatePhases();
-            DestroyBoss();
+            Destroy(this.gameObject);
+            _UIManager.winGame();
+            // this.gameObject.SetActive(false);
         }
     }
 }

@@ -15,6 +15,7 @@ public class BossFight : MonoBehaviour
     [SerializeField] private GameObject[] bulletHellPatterns;
     
     private int currPattern;
+    private int currPattern2;
     private GameObject currBulletSpawner;
 
     
@@ -24,6 +25,8 @@ public class BossFight : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        currPattern = 0;
+        currPattern2 = 0;
         for (int i = 1; i < bulletHellPatterns.Length; i++)
         {
             bulletHellPatterns[i].GetComponent<ProjectileEmitterAdvanced>().enabled = false; //.SetActive(false);
@@ -39,9 +42,14 @@ public class BossFight : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Projectile") {
-            DamageBoss(5);
+            DamageBoss(2);
         }
-        
+
+        if (other.tag == "ChargeProjectile")
+        {
+            DamageBoss(10);
+        }
+
     }
     
     // Update is called once per frame
@@ -70,7 +78,7 @@ public class BossFight : MonoBehaviour
                 secsToWait = Random.Range(10.0f, 15.0f);
                 // do thing here:
                 bulletHellPatterns[currPattern].GetComponent<ProjectileEmitterAdvanced>().enabled = false;
-                currPattern = Random.Range(0, bulletHellPatterns.Length);
+                currPattern = Random.Range(0, 2);
                 bulletHellPatterns[currPattern].GetComponent<ProjectileEmitterAdvanced>().enabled = true;
                 
             }
@@ -78,7 +86,31 @@ public class BossFight : MonoBehaviour
 
         if (phase == 2)
         {
-            
+            secsToWait -= Time.deltaTime;  
+
+            if(secsToWait<=0) {
+                secsToWait = Random.Range(5.0f, 8.0f);
+                // do thing here:
+                bulletHellPatterns[currPattern].GetComponent<ProjectileEmitterAdvanced>().enabled = false;
+                currPattern = Random.Range(0, 2);
+                bulletHellPatterns[currPattern].GetComponent<ProjectileEmitterAdvanced>().enabled = true;
+                print("doing stuff");
+            }
+        }
+        if (phase == 3)
+        {
+            secsToWait -= Time.deltaTime;  
+
+            if(secsToWait<=0) {
+                secsToWait = Random.Range(5.0f, 8.0f);
+                // do thing here:
+                bulletHellPatterns[currPattern].GetComponent<ProjectileEmitterAdvanced>().enabled = false;
+                bulletHellPatterns[currPattern2].GetComponent<ProjectileEmitterAdvanced>().enabled = false;
+                currPattern = Random.Range(0, 3);
+                currPattern2 = ((currPattern + 1) % (bulletHellPatterns.Length - 1));
+                bulletHellPatterns[currPattern].GetComponent<ProjectileEmitterAdvanced>().enabled = true;
+                bulletHellPatterns[currPattern2].GetComponent<ProjectileEmitterAdvanced>().enabled = true;
+            }
         }
     }
 
@@ -100,13 +132,13 @@ public class BossFight : MonoBehaviour
         
         if (currentHealth <= 60)
         {
-            DeactivatePhases();
-            PhasesLogic(2);
+            //PhasesLogic(2);
+            bulletHellPatterns[2].gameObject.GetComponent<ProjectileEmitterAdvanced>().enabled = true;
         }
 
         if (currentHealth <= 25)
         {
-            DeactivatePhases();
+            bulletHellPatterns[3].gameObject.GetComponent<ProjectileEmitterAdvanced>().enabled = true;
             PhasesLogic(3);
         }
 

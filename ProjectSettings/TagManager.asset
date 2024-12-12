@@ -7,6 +7,8 @@ TagManager:
   - Projectile
   - Boss
   - BulletHellProjectile
+  - ChargeProjectile
+  - Structure
   layers:
   - Default
   - TransparentFX

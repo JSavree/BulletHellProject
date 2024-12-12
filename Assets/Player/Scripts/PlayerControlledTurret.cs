@@ -10,6 +10,8 @@ public class PlayerControlledTurret : MonoBehaviour {
 	private float shotCooldown;
 	public float fireRate;
 	int barrel_index = 0;
+
+	[SerializeField] private WeaponController _weaponController;
 	// Use this for initialization
 	void Start () {
 	
@@ -18,6 +20,7 @@ public class PlayerControlledTurret : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+		
 		//This makes the turret aim at the mouse position (Controlled by CustomPointer, but you can replace CustomPointer.pointerPosition with Input.MousePosition and it should work)
 		Vector3 turretPosition = Camera.main.WorldToScreenPoint(transform.position);
 		Vector3 direction = Input.mousePosition - turretPosition;
@@ -28,7 +31,7 @@ public class PlayerControlledTurret : MonoBehaviour {
 			shotCooldown -= Time.deltaTime;
 		}
 		
-		if (Input.GetMouseButtonDown(0) && barrel_hardpoints != null) {
+		if (Input.GetMouseButtonDown(0) && barrel_hardpoints != null && (_weaponController.currentWeapon == 1)) {
 			if (shotCooldown <= 0)
 			{
 				shotCooldown = fireRate;
@@ -41,9 +44,6 @@ public class PlayerControlledTurret : MonoBehaviour {
 				if (barrel_index >= barrel_hardpoints.Length)
 					barrel_index = 0;
 			}
-
-			
-		
 		}
 	
 	}

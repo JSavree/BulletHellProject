@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Powerups/WeaponBuff")]
+
 public class UpgradeWeapon : PowerupEffect
 {
     
